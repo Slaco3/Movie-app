@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Link } from "react-router";
 
+import styles from './MovieList.module.css';
+
+
 const API_KEY = "acd1a45ad141f2248344570c0d8c2ff3"
 const IMG_BASE_URL =  "https://image.tmdb.org/t/p/w500"
 
@@ -18,7 +21,6 @@ function MovieList() {
         fetchMovies()
     }, [category])
 
-
     const categories = [
         { endpoint: 'popular', label: '🔥 Populaires' },
         { endpoint: 'now_playing', label: '🎬 En salle' },
@@ -27,19 +29,15 @@ function MovieList() {
     ]
 
 
-    const handleDetailFilm = () => {
-
-    }
-
     return (
-        <div className="movie-list-container">
+        <div className={styles.movieListContainer}>
             <h1>🎬 Catalogue de Films</h1>
 
-            <div className="category-tabs">
+            <div className={styles.categoryTabs}>
                 {categories.map(cat => (
                     <button
                         key={cat.endpoint}
-                        className={`tab ${category === cat.endpoint ? 'active' : ''}`}
+                        className={`${styles.tab} ${category === cat.endpoint ? styles.active : ''}`}
                         onClick={() => setCategory(cat.endpoint)}
                     >
                         {cat.label}
@@ -47,9 +45,9 @@ function MovieList() {
                 ))}
             </div>
 
-            <ul>
+            <ul className={styles.movieGrid}>
                 {movies.map(movie => (
-                    <li key={movie.id}>
+                    <li key={movie.id} className={styles.movieCard}>
                         <img
                             src={movie.poster_path
                                 ? `${IMG_BASE_URL}${movie.poster_path}`
@@ -57,14 +55,14 @@ function MovieList() {
                             }
                             alt={movie.title}
                         />
-                        <div>
-                            <h3> title : {movie.title}</h3>
-                            <div>⭐ {movie.vote_average.toFixed(1)}/10</div>
-                            <p className="release-date">
+                        <div className={styles.movieInfo}>
+                            <h3 className= {styles.movieTitle}> title : {movie.title}</h3>
+                            <div className= {styles.rating}>⭐ {movie.vote_average.toFixed(1)}/10</div>
+                            <p className={styles.releaseDate}>
                                 📅 {new Date(movie.release_date).toLocaleDateString('fr-FR')}
                             </p>
                             <Link to= {`/movie/${movie.id}`}>
-                                <button className="btn-primary">Voir les détails</button>
+                                <button className= {styles.btnPrimary}>Voir les détails</button>
                             </Link>
                         </div>
 
