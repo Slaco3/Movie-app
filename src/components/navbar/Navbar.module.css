@@ -1,0 +1,260 @@
+/* ============================================
+    Navbar.module.css - Barre de navigation
+   ============================================ */
+
+/* ✨ SUPPRESSION TOTALE DU CONTOUR BLEU */
+.logo,
+.logo:focus,
+.logo:active,
+.logo:focus-visible,
+.wishlistLink,
+.wishlistLink:focus,
+.wishlistLink:active,
+.wishlistLink:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Alternative : contour personnalisé uniquement au clavier */
+.logo:focus-visible {
+    outline: 2px dashed rgba(102, 126, 234, 0.5) !important;
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* ... reste du code ... */
+}
+
+
+/* ============================================
+    Navbar.module.css - Barre de navigation
+   ============================================ */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    /* ✨ Nouveau : Blanc avec teinte violette subtile */
+    background: rgba(242, 240, 255, 0.95);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 25px rgba(102, 126, 234, 0.4);
+    border-bottom: 2px solid rgba(102, 126, 234, 0.15);
+}
+
+/* ============================================
+   Logo
+   ============================================ */
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-shadow: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    filter: drop-shadow(2px 2px 4px rgba(102, 126, 234, 0.3));
+    
+    /* ✨ Suppression du contour bleu */
+    outline: none;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(3px 3px 8px rgba(102, 126, 234, 0.6));
+}
+
+/* ✨ Focus accessible sans carré bleu */
+.logo:focus {
+    outline: none;
+}
+
+/* ✨ Alternative : contour personnalisé pour accessibilité */
+.logo:focus-visible {
+    outline: 2px dashed rgba(102, 126, 234, 0.5);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+/* ============================================
+    Lien Wishlist
+   ============================================ */
+
+.wishlistLink {
+    position: relative;
+    padding: 12px 24px;
+    /* ✨ Nouveau : Bouton violet avec hover rose */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: 2px solid transparent;
+    border-radius: 50px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.wishlistLink:hover {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 25px rgba(245, 87, 108, 0.5);
+}
+
+.wishlistLink:active {
+    transform: translateY(0) scale(1);
+}
+
+/* Badge compteur */
+.wishlistLink[data-count]:not([data-count="0"])::before {
+    content: attr(data-count);
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 12px;
+    border: 2px solid white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    min-width: 22px;
+    text-align: center;
+    animation: pulse 2s infinite;
+}
+
+/* ============================================
+    Animations
+   ============================================ */
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.navbar {
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
+}
+
+.logo:hover {
+    animation: wiggle 0.5s ease;
+}
+
+/* ============================================
+    Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 25px;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .wishlistLink {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 12px 20px;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .wishlistLink {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ============================================
+    Variante scroll (optionnelle)
+   ============================================ */
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 6px 30px rgba(102, 126, 234, 0.5);
+}
+
+/* ============================================
+    Accessibilité
+   ============================================ */
+
+.logo:focus,
+.wishlistLink:focus {
+    outline: 3px solid #667eea;
+    outline-offset: 4px;
+}
+
+/* ============================================
+    Performance
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .navbar,
+    .logo,
+    .wishlistLink,
+    .wishlistLink::before {
+        animation: none;
+        transition: none;
+    }
+}
