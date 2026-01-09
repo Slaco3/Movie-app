@@ -18,7 +18,7 @@ function MovieList() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDebouncedSearch(searchQuery);
-      setPage(1); // reset pagination quand on cherche
+      setPage(1); 
     }, 500);
 
     return () => clearTimeout(timeout);
