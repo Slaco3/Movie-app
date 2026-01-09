@@ -12,21 +12,19 @@ function MovieDetail() {
     const [cast, setCast] = useState([]);
     const [similarMovies, setSimilarMovies] = useState([]);
 
-    // ✅ Récupérer le contexte de la wishlist
     const { wishlist, addToWishlist, removeFromWishlist } = useContext(WishlistContext);
 
-    // Vérifier si le film est déjà dans la wishlist
     const inWishlist = wishlist.some(item => item.id === parseInt(id));
 
     useEffect(() => {
         const fetchMovie = async () => {
             try {
-                // Infos détaillées du film
+                // Infos détaillées 
                 const responseMovie = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=fr-FR`);
                 const dataMovie = await responseMovie.json();
                 setMovie(dataMovie);
 
-                // Casting (acteurs principaux)
+                // Casting 
                 const resCast = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=fr-FR`);
                 const dataCast = await resCast.json();
                 setCast(dataCast.cast.slice(0, 10)); // prendre les 10 premiers acteurs
@@ -46,12 +44,11 @@ function MovieDetail() {
         fetchMovie();
     }, [id]);
 
-    // Fonction pour ajouter ou retirer de la wishlist via le contexte
+
     const toggleWishlist = () => {
         if (inWishlist) {
             removeFromWishlist(parseInt(id));
         } else {
-            // On ajoute l'objet movie complet à la wishlist
             addToWishlist({
                 id: movie.id,
                 title: movie.title,
