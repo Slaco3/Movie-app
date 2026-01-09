@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from "react-router";
 
 const API_KEY = "acd1a45ad141f2248344570c0d8c2ff3"
+const IMG_BASE_URL =  "https://image.tmdb.org/t/p/w500"
 
 function MovieList() {
     const [movies, setMovies] = useState([])
@@ -49,12 +50,24 @@ function MovieList() {
             <ul>
                 {movies.map(movie => (
                     <li key={movie.id}>
-                        <span> title : {movie.title}</span>
-                        {/* <img src={movie.poster_path} alt="" /> */}
-                        <span> {movie.rating}</span>
-                        <Link to="/movies">
-                            <button className="btn-primary">Voir les films</button>
-                        </Link>
+                        <img
+                            src={movie.poster_path
+                                ? `${IMG_BASE_URL}${movie.poster_path}`
+                                : 'https://via.placeholder.com/500x750?text=No+Image'
+                            }
+                            alt={movie.title}
+                        />
+                        <div>
+                            <h3> title : {movie.title}</h3>
+                            <div>⭐ {movie.vote_average.toFixed(1)}/10</div>
+                            <p className="release-date">
+                                📅 {new Date(movie.release_date).toLocaleDateString('fr-FR')}
+                            </p>
+                            <Link to= {`/movie/${movie.id}`}>
+                                <button className="btn-primary">Voir les détails</button>
+                            </Link>
+                        </div>
+
                     </li>
                 ))}
             </ul>
