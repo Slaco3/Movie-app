@@ -17,7 +17,6 @@ function App() {
         <Route path="/wishList" element={<Wishlist />} />
       </Routes>
     </WishlistProvider>
-    // <MovieList />
   );
 
 }
