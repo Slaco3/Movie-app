@@ -47,7 +47,7 @@ function MovieList() {
 
   return (
     <div className={styles.movieListContainer}>
-      <h1>🎬 Catalogue de Films</h1>
+      {/* <h1>🎬 Catalogue de Films</h1> */}
 
       <div className={styles.categoryTabs}>
         {categories.map(cat => (
