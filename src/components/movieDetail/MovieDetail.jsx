@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router';
+import { WishlistContext } from '../../contexts/WishlistContext'; // chemin vers ton contexte
 import styles from './MovieDetail.module.css';
 
 const API_KEY = "acd1a45ad141f2248344570c0d8c2ff3";
@@ -9,7 +10,12 @@ function MovieDetail() {
     const { id } = useParams();
     const [movie, setMovie] = useState(null);
     const [cast, setCast] = useState([]);
-    const [inWishlist, setInWishlist] = useState(false);
+
+    // ✅ Récupérer le contexte de la wishlist
+    const { wishlist, addToWishlist, removeFromWishlist } = useContext(WishlistContext);
+
+    // Vérifier si le film est déjà dans la wishlist
+    const inWishlist = wishlist.some(item => item.id === parseInt(id));
 
     useEffect(() => {
         const fetchMovie = async () => {
@@ -31,8 +37,19 @@ function MovieDetail() {
         fetchMovie();
     }, [id]);
 
+    // Fonction pour ajouter ou retirer de la wishlist via le contexte
     const toggleWishlist = () => {
-        setInWishlist(prev => !prev);
+        if (inWishlist) {
+            removeFromWishlist(parseInt(id));
+        } else {
+            // On ajoute l'objet movie complet à la wishlist
+            addToWishlist({
+                id: movie.id,
+                title: movie.title,
+                poster_path: movie.poster_path,
+                vote_average: movie.vote_average,
+            });
+        }
     };
 
     if (!movie) return <div className={styles.loading}>Chargement...</div>;
