@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { WishlistContext } from '../../contexts/WishlistContext'; // chemin vers ton contexte
 import styles from './MovieDetail.module.css';
 
-const API_KEY = "acd1a45ad141f2248344570c0d8c2ff3";
+const API_KEY = import.meta.env.VITE_API_KEY;
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 function MovieDetail() {
