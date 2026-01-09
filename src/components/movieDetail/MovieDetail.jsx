@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router';
-import { WishlistContext } from '../../contexts/WishlistContext'; // chemin vers ton contexte
+import { WishlistContext } from '../../contexts/WishlistContext'; 
 import styles from './MovieDetail.module.css';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -27,14 +27,14 @@ function MovieDetail() {
                 // Casting 
                 const resCast = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=fr-FR`);
                 const dataCast = await resCast.json();
-                setCast(dataCast.cast.slice(0, 10)); // prendre les 10 premiers acteurs
+                setCast(dataCast.cast.slice(0, 10)); 
 
                 // Films similaires
                 const resSimilar = await fetch(
                     `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${API_KEY}&language=fr-FR`
                 );
                 const dataSimilar = await resSimilar.json();
-                setSimilarMovies(dataSimilar.results.slice(0, 6)); // max 6 films
+                setSimilarMovies(dataSimilar.results.slice(0, 6)); 
 
             } catch (error) {
                 console.error("Error fetching movie details:", error);
