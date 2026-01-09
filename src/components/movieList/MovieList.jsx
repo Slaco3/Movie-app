@@ -14,9 +14,7 @@ function MovieList() {
 
   const [page, setPage] = useState(1);
 
-  /* =========================
-     DEBOUNCE SEARCH
-  ========================== */
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDebouncedSearch(searchQuery);
@@ -26,9 +24,7 @@ function MovieList() {
     return () => clearTimeout(timeout);
   }, [searchQuery]);
 
-  /* =========================
-     FETCH MOVIES
-  ========================== */
+
   useEffect(() => {
     const fetchMovies = async () => {
       const endpoint = debouncedSearch
@@ -48,9 +44,7 @@ function MovieList() {
     fetchMovies();
   }, [category, debouncedSearch, page]);
 
-  /* =========================
-     CATEGORIES
-  ========================== */
+
   const categories = [
     { endpoint: 'popular', label: '🔥 Populaires' },
     { endpoint: 'now_playing', label: '🎬 En salle' },
@@ -61,7 +55,6 @@ function MovieList() {
   return (
     <div className={styles.movieListContainer}>
 
-      {/* CATEGORIES */}
       <div className={styles.categoryTabs}>
         {categories.map(cat => (
           <button
@@ -79,7 +72,6 @@ function MovieList() {
         ))}
       </div>
 
-      {/* SEARCH */}
       <div className={styles.searchContainer}>
         <input
           type="text"
@@ -90,7 +82,6 @@ function MovieList() {
         />
       </div>
 
-      {/* MOVIES */}
       <ul className={styles.movieGrid}>
         {movies.map(movie => (
           <li key={movie.id} className={styles.movieCard}>
@@ -118,7 +109,6 @@ function MovieList() {
         ))}
       </ul>
 
-      {/* PAGINATION */}
       <div className={styles.pagination}>
         <button
           onClick={() => setPage(p => Math.max(1, p - 1))}

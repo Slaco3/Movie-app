@@ -1,5 +1,5 @@
 /* ============================================
-   🎬 MovieList.module.css - Page principale
+    MovieList.module.css - Page principale
    ============================================ */
 
 /* Container principal - Fond violet sur toute la page */
@@ -11,7 +11,7 @@
 }
 
 /* ============================================
-   📑 Onglets catégories
+    Onglets catégories
    ============================================ */
 
 .categoryTabs {
@@ -52,7 +52,7 @@
 }
 
 /* ============================================
-   🔍 Barre de recherche
+    Barre de recherche
    ============================================ */
 
 .searchContainer {
@@ -87,7 +87,7 @@
 }
 
 /* ============================================
-   🎬 Grille de films
+    Grille de films
    ============================================ */
 
 .movieGrid {
@@ -101,11 +101,11 @@
 }
 
 /* ============================================
-   🎞️ Carte film
+    Carte film
    ============================================ */
 
 .movieCard {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.95);  /* ✨ Presque blanc */
     backdrop-filter: blur(15px);
     border-radius: 15px;
     overflow: hidden;
@@ -118,7 +118,7 @@
 .movieCard:hover {
     transform: translateY(-10px) scale(1.02);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 1);  /* ✨ Blanc pur au survol */
 }
 
 /* Poster */
@@ -135,7 +135,7 @@
 }
 
 /* ============================================
-   📝 Infos film
+    Infos film
    ============================================ */
 
 .movieInfo {
@@ -149,7 +149,7 @@
 .movieTitle {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #fff;
+    color: #333;  /* ✨ Texte foncé pour contraste */
     margin: 0;
     line-height: 1.3;
     min-height: 2.6em;
@@ -170,7 +170,7 @@
 }
 
 .releaseDate {
-    color: rgba(255, 255, 255, 0.8);
+    color: #666;  /* ✨ Gris foncé pour lisibilité */
     font-size: 0.95rem;
     display: flex;
     align-items: center;
@@ -178,7 +178,7 @@
 }
 
 /* ============================================
-   🔘 Bouton détails
+    Bouton détails
    ============================================ */
 
 .btnPrimary {
@@ -207,7 +207,7 @@
 }
 
 /* ============================================
-   📄 Pagination
+    Pagination
    ============================================ */
 
 .pagination {
@@ -256,7 +256,7 @@
 }
 
 /* ============================================
-   📱 Responsive Design
+    Responsive Design
    ============================================ */
 
 /* Tablettes */
@@ -419,7 +419,7 @@
 }
 
 /* ============================================
-   ✨ Animations d'entrée
+    Animations d'entrée
    ============================================ */
 
 @keyframes fadeInUp {
@@ -449,7 +449,7 @@
 .movieCard:nth-child(10) { animation-delay: 0.5s; }
 
 /* ============================================
-   🎨 Améliorations visuelles
+    Améliorations visuelles
    ============================================ */
 
 /* Effet de brillance au survol */
