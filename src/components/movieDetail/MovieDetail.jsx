@@ -10,6 +10,7 @@ function MovieDetail() {
     const { id } = useParams();
     const [movie, setMovie] = useState(null);
     const [cast, setCast] = useState([]);
+    const [similarMovies, setSimilarMovies] = useState([]);
 
     // ✅ Récupérer le contexte de la wishlist
     const { wishlist, addToWishlist, removeFromWishlist } = useContext(WishlistContext);
@@ -29,6 +30,14 @@ function MovieDetail() {
                 const resCast = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=fr-FR`);
                 const dataCast = await resCast.json();
                 setCast(dataCast.cast.slice(0, 10)); // prendre les 10 premiers acteurs
+
+                // Films similaires
+                const resSimilar = await fetch(
+                    `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${API_KEY}&language=fr-FR`
+                );
+                const dataSimilar = await resSimilar.json();
+                setSimilarMovies(dataSimilar.results.slice(0, 6)); // max 6 films
+
             } catch (error) {
                 console.error("Error fetching movie details:", error);
             }
@@ -90,6 +99,25 @@ function MovieDetail() {
                     </li>
                 ))}
             </ul>
+
+            <h2 className={styles.subTitle}>Films similaires</h2>
+
+            <ul className={styles.similarGrid}>
+                {similarMovies.map(movie => (
+                    <li key={movie.id} className={styles.similarCard}>
+                        <img
+                            src={
+                                movie.poster_path
+                                    ? `${IMG_BASE_URL}${movie.poster_path}`
+                                    : 'https://via.placeholder.com/200x300?text=No+Image'
+                            }
+                            alt={movie.title}
+                        />
+                        <p>{movie.title}</p>
+                    </li>
+                ))}
+            </ul>
+
         </div>
     );
 }
